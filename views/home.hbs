@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LC certificate</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-image: url(https://www.nepdigitalhub.com/wp-content/uploads/2021/03/v462-n-130-textureidea_1.jpg);
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        .container {
+            text-align: center;
+            width: 100%;
+            margin: auto;
+            margin-top: 100px;
+        }
+
+        #head {
+            font-size: 50px;
+            font-style: normal;
+            color: rgb(255, 255, 255);
+        }
+
+        #subhead {
+            font-size: 30px;
+            margin-top: 10px;
+            font-style: italic;
+            color: rgb(255, 255, 255);
+        }
+
+        #con_1 {
+            width: 90%;
+            margin: auto;
+        }
+
+        form {
+            background-color: #afa3a3b3;
+            padding-top: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 54%;
+            border-radius: 5px;
+            margin: auto;
+            margin-top: 10px;
+            padding-bottom: 60px;
+            color: rgb(255, 255, 255);
+            font-size: medium;
+            font: bold;
+        }
+
+        .box {
+            width: 98.5%;
+            height: 2.8em;
+            position: relative;
+            bottom: 10px;
+            border: 0;
+            border-radius: 5px;
+            font: 1em caption;
+
+        }
+
+        .sub-box {
+            width: 40.8%;
+            height: 2em;
+            position: relative;
+            bottom: 5px;
+            border: 0;
+            border-radius: 5px;
+            font: 1em caption;
+
+        }
+
+        .sub-box-1 {
+            width: 29.5%;
+            height: 2em;
+            position: relative;
+            bottom: 5px;
+            border: 0;
+            border-radius: 5px;
+            font: 1em caption;
+            
+
+        }
+
+        .sub-box-2 {
+            width: 98.5%;
+            height: 5em;
+            position: relative;
+            bottom: 5px;
+            border: 0;
+            border-radius: 5px;
+            font: 1em caption;
+        }
+
+        button {
+            padding: 10px 24px;
+            border: 0;
+            border-radius: 5px;
+            text-align: center;
+            margin: auto;
+            display: flex;
+            display: grid;
+        }
+
+        .button:hover {
+            background-color: #000000;
+            color: white;
+            box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        .cont {
+            color: rgb(255, 4, 4);
+        }
+        .cont1
+        {
+            color: rgb(12, 12, 12);
+        }
+        .danger
+        {
+            color: rgb(0, 0, 0);
+            font-size: 13px;
+            font-family: Roboto, 'Helvetica Neue', sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 id="head"> DATTA MEGHE COLLEGE OF ENGINEERING</h1>
+        <h2 id="subhead">Leaving Certificate</h2>
+    </div>
+
+    <form action="form.php">
+        <div class="main_content" id="con_1">
+            <label for="name">Registration Number of candidate :</label> <br><br>
+            <input type="text" id="reg_num" name="reg_num" required minlength="10" maxlength="11" size="20"
+                placeholder=" Registration Number" class="box">
+            <br><br>
+            <!-- <h3>Name of candidate: </h3> -->
+            <label for="lname">First Name</label>  <br><br>
+            <input type="name" id="fname" name="fname" required minlength="10" maxlength="20" size="20"
+                placeholder={{firstname}} class="box">
+            <br><br>
+            <label for="lname">Middle Name</label>  <br><br>
+            <input type="name" id="mname" name="mname" required minlength="10" maxlength="20" size="20"
+                placeholder=" Enter Your Middle Name" class="box">
+            <br><br>
+            <label for="lname">Last Name</label>  <br><br>
+            <input type="name" id="lname" name="lname" required minlength="10" maxlength="20" size="30"
+                placeholder=" Enter your Lastname(surname)" class="box">
+            <br><br>
+            <label for="mname">Mother's Name</label>  <br><br>
+            <input type="name" id="mname" name="mname" required minlength="10" maxlength="20" size="30"
+                placeholder=" Enter your Mother's Name" class="box">
+            <br><br><br>
+            <label for="religion">Religion </label>  <br><br>
+            <input type="text" id="religion" name="religion" required minlength="11" maxlength="20" size="20"
+                class="box">
+            <br><br>
+            <label for="caste">Caste </label>  <br><br>
+            <input type="text" id="caste" name="caste" required minlength="11" maxlength="20" size="20" class="box">
+            <br><br>
+            <label for="subcaste">Sub-Caste </label> <br><br>
+            <input type="text" id="subcaste" name="subcaste" required minlength="11" maxlength="20" size="20"
+                class="box">
+            <br><br>
+            <label for="pob">Place of Birth </label>  <br><br>
+            <input type="text" id="pob" name="pob" required minlength="11" maxlength="20" size="20" class="box">
+            <br><br>
+            <label for="nation">Nationality </label>  <br><br>
+            <input type="text" id="nation" name="nation" required minlength="11" maxlength="20" size="20" class="box">
+            <br><br>
+            <label for="dob">Date of Birth according to Christian era,In figure: </label>  <br><br>
+            <input type="date" id="dob" name="dob" class="box">
+            <br><br>
+            <label for="words">in Words </label> 
+            <input type="text" id="words" name="words" required minlength="11" maxlength="20" size="20" class="sub-box">
+
+            <label for="day">day of </label> 
+            <input type="text" id="day" name="day" required minlength="11" maxlength="20" size="20" class="sub-box">
+            <br><br>
+
+            <label for="year">One thousand nine hundred and </label>  
+            <input type="text" id="year" name="year" required minlength="11" maxlength="20" size="20"
+                class="sub-box"><label for="day"> . </label>
+            <br><br>
+
+            <label for="institute">Institute Last Attended: </label>  <br><br>
+            <input type="text" id="institute" name="institute" required minlength="11" maxlength="20" size="20"
+                class="box">
+            <br><br>
+            <label for="doa">Date of Addmission in this college: </label>  <br><br>
+            <input type="date" id="doa" name="doa" class="box">
+            <br><br>
+            <label for="progress">Progress: </label>  <br><br>
+            <input type="text" id="progress" name="progress" required minlength="11" maxlength="20" size="20"
+                class="box">
+            <br><br>
+            <label for="conduct">Conduct: </label>  <br><br>
+            <input type="text" id="conduct" name="conduct" required minlength="11" maxlength="20" size="20" class="box">
+            <br><br>
+            <label for="leave">Date of leaving the institution:</label>  <br><br>
+            <input type="month" id="leave" name="leave" min="2020-03" value="2020-05" class="box">
+            <br><br>
+            <label for="pet-select">Choose Your Course:</label><br><br>
+
+            <select id="pet-select" class="box">
+                <option value="">--Please choose an option--</option>
+                <option value="Civil Engineering">Civil Engineering</option>
+                <option value="Civil & Infrastructure EngiElectronics Engineering">Civil & Infrastructure Engineering
+                </option>
+                <option value="Electronics Engineering">Electronics Engineering</option>
+                <option value="Computer Engineering">Computer Engineering</option>
+                <option value="Information Engineering">Information Engineering</option>
+                <option value="Artificial Intelligence & Data Science">Artificial Intelligence & Data Science</option>
+                <option value="Mechanical Engineering"> Mechanical Engineering</option>
+                <option value="Chemical Engineering">Chemical Engineering</option>
+                <option value="Humanities & Science">Humanities & Science</option>
+            </select>
+            <br><br>
+            <label for="study">Year in which studying </label> 
+            <input type="month" id="study" name="study" min=" 2016-05" value=" 2016-07" class="sub-box-1">
+            <label for="till">and since when</label> 
+            <input type="month" id="till" name="till" min=" 2020-03" value=" 2020-05" class="sub-box-1">
+            <br><br>
+            <label for="reason">Reason for leaving institution:</label>  <br><br>
+            <textarea name="reason" id="reason" placeholder=" Write Here" class="sub-box-2"></textarea>
+            <br><br>
+            <label for="remarks">Remarks:</label> <br><br>
+            <textarea name="remarks" id="remarks" placeholder=" Write Here" class="sub-box-2"></textarea>
+            <br><br>
+
+    </form>
+    <p class="cont1"> * All fields are Mandatory</p>
+    <p class="cont"> * Certified that the above information is in accordance with the Institute's Record</p>
+    
+    <br><br>
+    <button type="submit" form="submit" value="Submit" class="button">Submit</button>
+    <br><br>
+</body>
+
+</html>
