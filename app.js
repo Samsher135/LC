@@ -9,7 +9,7 @@ app.set('view engine', 'hbs')
 
 app.get('/', (req, res)=>{
 
-    var data = {firstname:'Suraj',
+    var data = {firstname:'Samsher',
         hobbies:['playing football', 'playing chess', 'cycling']}
     
     res.render('home', data);
