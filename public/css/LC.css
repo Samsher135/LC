@@ -1,0 +1,120 @@
+@page { size: auto;  margin: 0mm; }
+
+@media print {
+    #printPageButton {
+      display: none;
+    }
+  }
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: lighter;
+    -webkit-print-color-adjust: exact;
+  }
+
+  body{
+    background-size: cover;
+  }
+
+  .container{
+      margin: 32px;
+  }
+
+  .inner_container {
+    font-size: 14px;
+   }
+
+  header{
+      margin: 0 auto;
+      text-align: center;
+      padding-bottom: 70px;
+      margin-bottom: 30px;
+      border-bottom: solid 1.5px black;
+  }
+
+  #head{
+      font-family: 'Times New Roman', Times, serif;
+    }
+
+
+  header h2{
+      margin-top: 20px;
+  }
+
+  #dmce_logo {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    right: 650px;
+  }
+
+  p.Lc_num {
+    float: right;
+}
+
+.underline{
+    border-bottom: solid 1.5px black;
+    width: 100%;
+    display: block;
+}
+
+.main_section{
+    border-bottom: solid 1.5px black;
+    margin-bottom: 15px;
+}
+
+.main_section p{
+    display: flex;
+    margin-bottom: 30px;
+}
+
+span{
+    display: contents;
+}
+
+footer{
+    margin: 0 auto;
+    text-align: center;
+}
+
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 10px;
+    margin-top: 40px;
+    padding-right: 10px;
+    text-align: initial;
+  }
+  
+  .grid-container > div {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px 0;
+    font-size: 10px;
+    font-weight: 800;
+  }
+
+
+  .button {
+    padding: 15px 25px;
+    font-size: 24px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: #04AA6D;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+  }
+  
+  .button:hover {background-color: #3e8e41}
+  
+  .button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
