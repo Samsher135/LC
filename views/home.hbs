@@ -24,6 +24,7 @@
             <label for="name">Registration Number of candidate<span style="color: black;">*</span>:</label> <br><br>
             <input type="text" id="reg_num" name="reg_num" requiblack  size="20"
                 placeholder=" Registration Number" class="box">
+            <button type="button" onclick="go()">Find</button>    
             <br><br>
             <!-- <h3>Name of candidate: </h3> -->
             <label for="lname">Name of the Candidate<span style="color: black;">*</span></label>  <br><br>
@@ -125,13 +126,20 @@
     });
     });
 
-    /**function callme(){
+    function go(){
         var x = document.getElementById("reg_num").value;
-        console.log(x.length,"test");
-        if(x.length==11){
-        $.get('http://localhost:5000/all_data',{GR_NO:x});
-        }
-    }**/
+        $.get('https://leavingcertificate.herokuapp.com/all_data',{GR_NO:x},
+        function (data, status) {
+            document.getElementById("fname").value = data[0].Candidate_Name;
+            document.getElementById("religion").value = data[0].Religion;
+            document.getElementById("caste").value = data[0].Caste;
+            document.getElementById("subcaste").value = data[0].sub_caste;
+            document.getElementById("pob").value = data[0].Birth_Place;
+            document.getElementById("dob").value = data[0].DOB.split(' ')[0];
+            document.getElementById("institute").value = data[0].Last_College_Name;
+            document.getElementById("doa").value = data[0].Date_of_admission.split(' ')[0];;
+        });
+    }
     </script>
 </body>
 
