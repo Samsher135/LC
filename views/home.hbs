@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" />
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <title>LC certificate</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -15,85 +19,62 @@
         <h2 id="subhead">Leaving Certificate</h2>
     </div>
 
-    <form action="/LC" method="get">
+    <form action="/LC" method="post">
         <div class="main_content" id="con_1">
-            <label for="name">Registration Number of candidate :</label> <br><br>
-            <input type="text" id="reg_num" name="reg_num" required minlength="10" maxlength="11" size="20"
+            <label for="name">Registration Number of candidate<span style="color: black;">*</span>:</label> <br><br>
+            <input type="text" id="reg_num" name="reg_num" requiblack  size="20"
                 placeholder=" Registration Number" class="box">
             <br><br>
             <!-- <h3>Name of candidate: </h3> -->
-            <label for="lname">First Name</label>  <br><br>
-            <input type="name" id="fname" name="fname" required minlength="10" maxlength="20" size="20"
-                placeholder=firstname class="box">
+            <label for="lname">Name of the Candidate<span style="color: black;">*</span></label>  <br><br>
+            <input type="name" id="fname" name="fname" requiblack  size="20"
+                placeholder="full_name" class="box">
             <br><br>
-            <label for="lname">Middle Name</label>  <br><br>
-            <input type="name" id="mname" name="mname" required minlength="10" maxlength="20" size="20"
-                placeholder=" Enter Your Middle Name" class="box">
-            <br><br>
-            <label for="lname">Last Name</label>  <br><br>
-            <input type="name" id="lname" name="lname" required minlength="10" maxlength="20" size="30"
-                placeholder=" Enter your Lastname(surname)" class="box">
-            <br><br>
-            <label for="mname">Mother's Name</label>  <br><br>
-            <input type="name" id="mname" name="mname" required minlength="10" maxlength="20" size="30"
-                placeholder=" Enter your Mother's Name" class="box">
-            <br><br><br>
             <label for="religion">Religion </label>  <br><br>
-            <input type="text" id="religion" name="religion" required minlength="11" maxlength="20" size="20"
+            <input type="text" id="religion" name="religion" placeholder="Religion"  size="20"
                 class="box">
             <br><br>
             <label for="caste">Caste </label>  <br><br>
-            <input type="text" id="caste" name="caste" required minlength="11" maxlength="20" size="20" class="box">
+            <input type="text" id="caste" name="caste" placeholder="caste"  size="20" class="box">
             <br><br>
             <label for="subcaste">Sub-Caste </label> <br><br>
-            <input type="text" id="subcaste" name="subcaste" required minlength="11" maxlength="20" size="20"
+            <input type="text" id="subcaste" name="subcaste" placeholder="subcaste"  size="20"
                 class="box">
             <br><br>
-            <label for="pob">Place of Birth </label>  <br><br>
-            <input type="text" id="pob" name="pob" required minlength="11" maxlength="20" size="20" class="box">
+            <label for="pob">Place of Birth<span style="color: black;">*</span></label>  <br><br>
+            <input type="text" id="pob" name="pob" placeholder="Place of birth" requiblack  size="20" class="box">
             <br><br>
-            <label for="nation">Nationality </label>  <br><br>
-            <input type="text" id="nation" name="nation" required minlength="11" maxlength="20" size="20" class="box">
+            <label for="nation">Nationality<span style="color: black;">*</span></label>  <br><br>
+            <input type="text" id="nation" name="nation" value="Indian" requiblack  size="20" class="box">
             <br><br>
-            <label for="dob">Date of Birth according to Christian era,In figure: </label>  <br><br>
-            <input type="date" id="dob" name="dob" class="box">
+            <label for="dob">Date of Birth according to Christian era,In figure<span style="color: black;">*</span>: </label>  <br><br>
+            <input placeholder="dd-mm-yyyy" requiblack id="dob" name="dob" class="box">
             <br><br>
-            <label for="words">in Words </label> 
-            <input type="text" id="words" name="words" required minlength="11" maxlength="20" size="20" class="sub-box">
-
-            <label for="day">day of </label> 
-            <input type="text" id="day" name="day" required minlength="11" maxlength="20" size="20" class="sub-box">
+            <label for="words">in Words <span style="color: black;">*</span></label> <br><br>
+            <input type="text" id="words" name="words" requiblack  size="20" class="box">
             <br><br>
-
-            <label for="year">One thousand nine hundred and </label>  
-            <input type="text" id="year" name="year" required minlength="11" maxlength="20" size="20"
-                class="sub-box"><label for="day"> . </label>
-            <br><br>
-
-            <label for="institute">Institute Last Attended: </label>  <br><br>
-            <input type="text" id="institute" name="institute" required minlength="11" maxlength="20" size="20"
+            <label for="institute">Institute Last Attended<span style="color: black;">*</span>: </label>  <br><br>
+            <input type="text" id="institute" name="institute" requiblack  size="20"
                 class="box">
             <br><br>
-            <label for="doa">Date of Addmission in this college: </label>  <br><br>
-            <input type="date" id="doa" name="doa" class="box">
+            <label for="doa">Date of Addmission in this college<span style="color: black;">*</span>: </label>  <br><br>
+            <input id="doa" requiblack name="doa" class="box">
             <br><br>
-            <label for="progress">Progress: </label>  <br><br>
-            <input type="text" id="progress" name="progress" required minlength="11" maxlength="20" size="20"
+            <label for="progress">Progress<span style="color: black;">*</span>: </label>  <br><br>
+            <input type="text" id="progress" value="Good" name="progress" requiblack  size="20"
                 class="box">
             <br><br>
-            <label for="conduct">Conduct: </label>  <br><br>
-            <input type="text" id="conduct" name="conduct" required minlength="11" maxlength="20" size="20" class="box">
+            <label for="conduct">Conduct<span style="color: black;">*</span>: </label>  <br><br>
+            <input type="text" id="conduct" value="Good" name="conduct" requiblack  size="20" class="box">
             <br><br>
-            <label for="leave">Date of leaving the institution:</label>  <br><br>
-            <input type="month" id="leave" name="leave" min="2020-03" value="2020-05" class="box">
+            <label for="leave">Date of leaving the institution<span style="color: black;">*</span>:</label>  <br><br>
+            <input type="month" id="leave" requiblack name="leave" value="2020-05" class="box">
             <br><br>
-            <label for="pet-select">Choose Your Course:</label><br><br>
-
-            <select id="pet-select" class="box">
+            <label for="pet-select">Choose Your Course<span style="color: black;">*</span>:</label><br><br>
+            <select name="pet-select" id="pet-select" required class="box">
                 <option value="">--Please choose an option--</option>
                 <option value="Civil Engineering">Civil Engineering</option>
-                <option value="Civil & Infrastructure EngiElectronics Engineering">Civil & Infrastructure Engineering
-                </option>
+                <option value="Civil & Infrastructure EngiElectronics Engineering">Civil & Infrastructure Engineering</option>
                 <option value="Electronics Engineering">Electronics Engineering</option>
                 <option value="Computer Engineering">Computer Engineering</option>
                 <option value="Information Engineering">Information Engineering</option>
@@ -103,25 +84,55 @@
                 <option value="Humanities & Science">Humanities & Science</option>
             </select>
             <br><br>
-            <label for="study">Year in which studying </label> 
-            <input type="month" id="study" name="study" min=" 2016-05" value=" 2016-07" class="sub-box-1">
-            <label for="till">and since when</label> 
-            <input type="month" id="till" name="till" min=" 2020-03" value=" 2020-05" class="sub-box-1">
+            <label for="study">course from<span style="color: black;">*</span> </label> 
+            <input type="month" id="study" name="study" requiblack min=" 2016-05" value=" 2016-07" class="sub-box-1">
+            <label for="till">to<span style="color: black;">*</span></label> 
+            <input type="month" id="till" name="till" requiblack min=" 2020-03" value=" 2020-05" class="sub-box-1">
             <br><br>
-            <label for="reason">Reason for leaving institution:</label>  <br><br>
+            <label for="reason">Reason for leaving institution(Optional):</label>  <br><br>
             <textarea name="reason" id="reason" placeholder=" Write Here" class="sub-box-2"></textarea>
             <br><br>
-            <label for="remarks">Remarks:</label> <br><br>
+            <label for="remarks">Remarks(Optional):</label> <br><br>
             <textarea name="remarks" id="remarks" placeholder=" Write Here" class="sub-box-2"></textarea>
             <br><br>
-
+            <label for="CGPI">CGPI<span style="color: black;">*</span>:</label> <br><br>
+            <input name="CGPI" id="CGPI" placeholder=" CGPI" requiblack class="sub-box-1">
+            <button type="submit" value="Submit" class="button">Proceed and Print</button>
     </form>
-    <p class="cont1"> * All fields are Mandatory</p>
-    <p class="cont"> * Certified that the above information is in accordance with the Institute's Record</p>
-    
-    <br><br>
-    <a href="https://leavingcertificate.herokuapp.com/LC"><button type="submit" form="submit" value="Submit" class="button">Submit</button></a>
-    <br><br>
+    <script type="text/javascript">
+    $(function() {
+    $("#reg_num").autocomplete({
+    name: 'reg_num',
+    source: 'http://localhost:5000/search?key=%QUERY',
+    limit: 4,
+    select: function (e, ui) {
+        alert('Data fetched Successfully');
+    },
+    change: function (e, ui){
+        var x = document.getElementById("reg_num").value;
+        $.get('http://localhost:5000/all_data',{GR_NO:x},
+        function (data, status) {
+            document.getElementById("fname").value = data[0].Candidate_Name;
+            document.getElementById("religion").value = data[0].Religion;
+            document.getElementById("caste").value = data[0].Caste;
+            document.getElementById("subcaste").value = data[0].sub_caste;
+            document.getElementById("pob").value = data[0].Birth_Place;
+            document.getElementById("dob").value = data[0].DOB.split(' ')[0];
+            document.getElementById("institute").value = data[0].Last_College_Name;
+            document.getElementById("doa").value = data[0].Date_of_admission.split(' ')[0];;
+        });
+    }
+    });
+    });
+
+    /**function callme(){
+        var x = document.getElementById("reg_num").value;
+        console.log(x.length,"test");
+        if(x.length==11){
+        $.get('http://localhost:5000/all_data',{GR_NO:x});
+        }
+    }**/
+    </script>
 </body>
 
 </html>

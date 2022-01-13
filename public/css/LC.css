@@ -4,6 +4,10 @@
     #printPageButton {
       display: none;
     }
+    #dmce_logo {
+      position: absolute;
+      right: 650px;
+    }
   }
 
 * {
@@ -47,8 +51,7 @@
   #dmce_logo {
     width: 100px;
     height: 100px;
-    position: absolute;
-    right: 650px;
+    float: left;
   }
 
   p.Lc_num {
