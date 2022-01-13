@@ -22,13 +22,13 @@
     <form action="/LC" method="post">
         <div class="main_content" id="con_1">
             <label for="name">Registration Number of candidate<span style="color: black;">*</span>:</label> <br><br>
-            <input type="text" id="reg_num" name="reg_num" requiblack  size="20"
+            <input type="text" id="reg_num" name="reg_num" required  size="20"
                 placeholder=" Registration Number" class="box">
             <button type="button" onclick="go()">Find</button>    
             <br><br>
             <!-- <h3>Name of candidate: </h3> -->
             <label for="lname">Name of the Candidate<span style="color: black;">*</span></label>  <br><br>
-            <input type="name" id="fname" name="fname" requiblack  size="20"
+            <input type="name" id="fname" name="fname" required  size="20"
                 placeholder="full_name" class="box">
             <br><br>
             <label for="religion">Religion </label>  <br><br>
@@ -43,39 +43,36 @@
                 class="box">
             <br><br>
             <label for="pob">Place of Birth<span style="color: black;">*</span></label>  <br><br>
-            <input type="text" id="pob" name="pob" placeholder="Place of birth" requiblack  size="20" class="box">
+            <input type="text" id="pob" name="pob" placeholder="Place of birth" required  size="20" class="box">
             <br><br>
             <label for="nation">Nationality<span style="color: black;">*</span></label>  <br><br>
-            <input type="text" id="nation" name="nation" value="Indian" requiblack  size="20" class="box">
+            <input type="text" id="nation" name="nation" value="Indian" required  size="20" class="box">
             <br><br>
             <label for="dob">Date of Birth according to Christian era,In figure<span style="color: black;">*</span>: </label>  <br><br>
-            <input placeholder="dd-mm-yyyy" requiblack id="dob" name="dob" class="box">
-            <br><br>
-            <label for="words">in Words <span style="color: black;">*</span></label> <br><br>
-            <input type="text" id="words" name="words" requiblack  size="20" class="box">
+            <input placeholder="dd-mm-yyyy" required id="dob" name="dob" class="box">
             <br><br>
             <label for="institute">Institute Last Attended<span style="color: black;">*</span>: </label>  <br><br>
-            <input type="text" id="institute" name="institute" requiblack  size="20"
+            <input type="text" id="institute" name="institute" required  size="20"
                 class="box">
             <br><br>
             <label for="doa">Date of Addmission in this college<span style="color: black;">*</span>: </label>  <br><br>
-            <input id="doa" requiblack name="doa" class="box">
+            <input id="doa" required name="doa" class="box">
             <br><br>
             <label for="progress">Progress<span style="color: black;">*</span>: </label>  <br><br>
-            <input type="text" id="progress" value="Good" name="progress" requiblack  size="20"
+            <input type="text" id="progress" value="Good" name="progress" required  size="20"
                 class="box">
             <br><br>
             <label for="conduct">Conduct<span style="color: black;">*</span>: </label>  <br><br>
-            <input type="text" id="conduct" value="Good" name="conduct" requiblack  size="20" class="box">
+            <input type="text" id="conduct" value="Good" name="conduct" required  size="20" class="box">
             <br><br>
             <label for="leave">Date of leaving the institution<span style="color: black;">*</span>:</label>  <br><br>
-            <input type="month" id="leave" requiblack name="leave" value="2020-05" class="box">
+            <input type="month" id="leave" required name="leave" value="2020-05" class="box">
             <br><br>
             <label for="pet-select">Choose Your Course<span style="color: black;">*</span>:</label><br><br>
             <select name="pet-select" id="pet-select" required class="box">
                 <option value="">--Please choose an option--</option>
                 <option value="Civil Engineering">Civil Engineering</option>
-                <option value="Civil & Infrastructure EngiElectronics Engineering">Civil & Infrastructure Engineering</option>
+                <option value="Civil & Infrastructure Engineering">Civil & Infrastructure Engineering</option>
                 <option value="Electronics Engineering">Electronics Engineering</option>
                 <option value="Computer Engineering">Computer Engineering</option>
                 <option value="Information Engineering">Information Engineering</option>
@@ -86,9 +83,9 @@
             </select>
             <br><br>
             <label for="study">course from<span style="color: black;">*</span> </label> 
-            <input type="month" id="study" name="study" requiblack min=" 2016-05" value=" 2016-07" class="sub-box-1">
+            <input type="month" id="study" name="study" required min=" 2016-05" value=" 2016-07" class="sub-box-1">
             <label for="till">to<span style="color: black;">*</span></label> 
-            <input type="month" id="till" name="till" requiblack min=" 2020-03" value=" 2020-05" class="sub-box-1">
+            <input type="month" id="till" name="till" required min=" 2020-03" value=" 2020-05" class="sub-box-1">
             <br><br>
             <label for="reason">Reason for leaving institution(Optional):</label>  <br><br>
             <textarea name="reason" id="reason" placeholder=" Write Here" class="sub-box-2"></textarea>
@@ -97,7 +94,7 @@
             <textarea name="remarks" id="remarks" placeholder=" Write Here" class="sub-box-2"></textarea>
             <br><br>
             <label for="CGPI">CGPI<span style="color: black;">*</span>:</label> <br><br>
-            <input name="CGPI" id="CGPI" placeholder=" CGPI" requiblack class="sub-box-1">
+            <input name="CGPI" id="CGPI" placeholder=" CGPI" required class="sub-box-1">
             <button type="submit" value="Submit" class="button">Proceed and Print</button>
     </form>
     <script type="text/javascript">
@@ -118,9 +115,32 @@
             document.getElementById("caste").value = data[0].Caste;
             document.getElementById("subcaste").value = data[0].sub_caste;
             document.getElementById("pob").value = data[0].Birth_Place;
-            document.getElementById("dob").value = data[0].DOB.split(' ')[0];
+            var isDate = function(date) {
+                return (new Date(date) !== "Invalid Date") && !isNaN(new Date(date));
+            }
+            
+            if(isDate(data[0].DOB)){
+                console.log('yes');
+                let output = new Date(data[0].DOB);
+                document.getElementById("dob").value = output.toLocaleDateString();
+            }else{
+                console.log('no');
+                let parts = data[0].DOB.split(' ')[0].split("/");
+                let d1 = new Date(Number(parts[2]), Number(parts[1]) - 1, Number(parts[0]));
+                document.getElementById("dob").value = d1.toLocaleDateString();
+            }
+
             document.getElementById("institute").value = data[0].Last_College_Name;
-            document.getElementById("doa").value = data[0].Date_of_admission.split(' ')[0];;
+            if(isDate(data[0].Date_of_admission)){
+                console.log('yes');
+                let output = new Date(data[0].Date_of_admission);
+                document.getElementById("doa").value = output.toLocaleDateString();
+            }else{
+                console.log('no');
+                let parts = data[0].Date_of_admission.split(' ')[0].split("/");
+                let d1 = new Date(Number(parts[2]), Number(parts[1]) - 1, Number(parts[0]));
+                document.getElementById("doa").value = d1.toLocaleDateString();
+            }
         });
     }
     });
@@ -135,9 +155,32 @@
             document.getElementById("caste").value = data[0].Caste;
             document.getElementById("subcaste").value = data[0].sub_caste;
             document.getElementById("pob").value = data[0].Birth_Place;
-            document.getElementById("dob").value = data[0].DOB.split(' ')[0];
+            var isDate = function(date) {
+                return (new Date(date) !== "Invalid Date") && !isNaN(new Date(date));
+            }
+
+            if(isDate(data[0].DOB)){
+                console.log('yes');
+                let output = new Date(data[0].DOB);
+                document.getElementById("dob").value = output.toLocaleDateString();
+            }else{
+                console.log('no');
+                let parts = data[0].DOB.split(' ')[0].split("/");
+                let d1 = new Date(Number(parts[2]), Number(parts[1]) - 1, Number(parts[0]));
+                document.getElementById("dob").value = d1.toLocaleDateString();
+            }
+
             document.getElementById("institute").value = data[0].Last_College_Name;
-            document.getElementById("doa").value = data[0].Date_of_admission.split(' ')[0];;
+            if(isDate(data[0].Date_of_admission)){
+                console.log('yes');
+                let output = new Date(data[0].Date_of_admission);
+                document.getElementById("doa").value = output.toLocaleDateString();
+            }else{
+                console.log('no');
+                let parts = data[0].Date_of_admission.split(' ')[0].split("/");
+                let d1 = new Date(Number(parts[2]), Number(parts[1]) - 1, Number(parts[0]));
+                document.getElementById("doa").value = d1.toLocaleDateString();
+            }
         });
     }
     </script>

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LC certificate</title>
     <link rel="stylesheet" href="css/LC.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     {{!-- <link rel="stylesheet" href="css/print.css"> --}}
 </head>
 <body>
@@ -17,7 +18,7 @@
         <img id = "dmce_logo" src="images/DMCE_LOGO.png" alt="DMCE_LOGO">
         <h3 id = "address">CIDCO, SECTOR - 3, AIROLI, NAVI MUMBAI - 400 708.</h3>
         <h2>LEAVING CERTIFICATE</h2>
-        <p class="Lc_num">No :   <span style="color: red;">14926</span></p>
+        <p class="Lc_num">No :   <span style="color: red;">{{serial_no}}</span></p>
         </div>
     </header>
     <div contentEditable="true" class="main_section">
@@ -25,10 +26,10 @@
         <pre><p>2) Name of the candidate <span class="underline">  {{fname}}</span></p></pre>
         <pre class="sml"><p><span>3) Religion <span class="underline">  {{religion}} </span></span><span>Caste<span class="underline"> {{caste}} </span></span><span> Sub-Caste <span class="underline"> {{subcaste}}</span></span></p></pre>
         <pre class="sml"><p><span>4) Place of birth <span class="underline"> {{pob}} </span></span><span> Nationality <span class="underline"> {{nation}} </span></span></p></pre>
-        <pre><p>5) Date of Birth according to<br>    Christian era, in Figures (DD-MM-YYYY) <span class="underline"> <br> {{dob}} </span></p></pre>
-        <pre><p>    in words <span class="underline"> {{words}}</span></p></pre>
+        <pre><p>5) Date of Birth according to<br>    Christian era, in Figures (DD/MM/YYYY) <span class="underline"> <br> {{newdob}} </span></p></pre>
+        <pre><p>    in words <span class="underline"> {{toword}}</span></p></pre>
         <pre><p>6) Institute Last attended <span class="underline"> {{institute}} </span></p></pre>
-        <pre><p>7) Date of Admission in this College (DD-MM-YYYY) <span class="underline"> {{doa}} </span></p></pre>
+        <pre><p>7) Date of Admission in this College (DD/MM/YYYY) <span class="underline"> {{newdoa}} </span></p></pre>
         <pre class="sml"><p><span>8) Progress <span class="underline"> {{progress}} </span></span><span> 9) Conduct <span class="underline"> {{conduct}} </span></span></p></pre>
         <pre><p>10) Date of leaving the institution <span class="underline"> {{newleave}} </span></p></pre>
         <pre><p>11) Course and year in which studying and since when <span class="underline"> {{pet-select}} </span></p></pre>
@@ -61,9 +62,17 @@
             <p>Airoli</p>
         </div> 
         </div>
-        <button class="button" style="margin:0 auto; width: 50%; background-color:rgb(255, 168, 7); padding: 10px;" id="printPageButton" onClick="window.print();">Print</button>
+        <button class="button" style="margin:0 auto; width: 50%; background-color:rgb(255, 168, 7); padding: 10px;" id="printPageButton" onClick="onPrintFinished();">Print</button>
     </footer>
     </div>
     </div>
+    <script>
+        var onPrintFinished=function(){
+            console.log("do something...");
+            window.print();
+            $.get('https://leavingcertificate.herokuapp.com/update_serial');
+            window.location.href = '/';
+        }
+    </script>
 </body>
 </html>
