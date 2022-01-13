@@ -103,14 +103,14 @@
     $(function() {
     $("#reg_num").autocomplete({
     name: 'reg_num',
-    source: 'http://localhost:5000/search?key=%QUERY',
+    source: 'https://leavingcertificate.herokuapp.com/search?key=%QUERY',
     limit: 4,
     select: function (e, ui) {
         alert('Data fetched Successfully');
     },
     change: function (e, ui){
         var x = document.getElementById("reg_num").value;
-        $.get('http://localhost:5000/all_data',{GR_NO:x},
+        $.get('https://leavingcertificate.herokuapp.com/all_data',{GR_NO:x},
         function (data, status) {
             document.getElementById("fname").value = data[0].Candidate_Name;
             document.getElementById("religion").value = data[0].Religion;
