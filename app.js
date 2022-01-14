@@ -105,7 +105,7 @@ app.post('/LC', (req, res)=>{
     datas.newtill = final2;
 
     let today = new Date().toLocaleDateString().slice(0, 10);
-    datas.todaydate = today;
+    datas.todaydate = swap(today);
 
     datas.newdob = swap(req.body.dob);
     datas.newdoa = swap(req.body.doa);
