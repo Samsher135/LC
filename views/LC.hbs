@@ -63,6 +63,7 @@
         </div> 
         </div>
         <button class="button" style="margin:0 auto; width: 50%; background-color:rgb(255, 168, 7); padding: 10px;" id="printPageButton" onClick="onPrintFinished();">Print</button>
+        <button class="button" style="margin:0 auto; width: 10%; background-color:rgb(255, 57, 7); padding: 10px;" id="tohomebutton" onclick="location.href='/'">HOME</button>
     </footer>
     </div>
     </div>
@@ -70,8 +71,7 @@
         var onPrintFinished=function(){
             console.log("do something...");
             window.print();
-            $.get('https://leavingcertificate.herokuapp.com/update_serial');
-            window.location.href = '/';
+            $.get('/update_serial');
         }
     </script>
 </body>
