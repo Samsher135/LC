@@ -14,12 +14,97 @@
 </head>
 
 <body>
-    <div class="container">
+    {{!-- <div class="container">
         <h1 id="head"> DATTA MEGHE COLLEGE OF ENGINEERING</h1>
         <h2 id="subhead">Leaving Certificate</h2>
+    </div> --}}
+    <div class="login-box">
+    <h2>Leaving Certicate Form</h2>
+    <form id="subs" action="/LC" method="post">
+        <div class="user-box">
+        <input type="text" id="reg_num" name="reg_num" required>
+        <label for="name">Registration Number of candidate<span style="color: lime;">*</span>:</label>
+        <a onclick="go()" href="#">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        Find
+        </a></button>
+        </div>
+        <div class="user-box">
+        <input type="name" id="fname" name="fname" required  >
+        <label for="lname">Name of the Candidate<span style="color: lime;">*</span>:</label> 
+        </div>
+        <div class="user-box">
+        <input type="text" id="religion" name="religion" required="">
+        <label for="religion">Religion:</label> 
+        </div>
+        <div class="user-box">
+        <input type="text" id="caste" name="caste" required="">
+        <label for="caste">Caste:</label>
+        </div>        
+        <div class="user-box">
+        <input type="text" id="subcaste" name="subcaste" required="">
+        <label for="subcaste">Sub-Caste:</label>
+        </div>
+        <div class="user-box">
+        <input type="text" id="pob" name="pob" required  >
+        <label for="pob">Place of Birth:<span style="color: lime;">*</span></label>
+        </div>
+        <div class="user-box">
+        <input required id="dob" name="dob" class="box"> 
+        <label for="dob">Date of Birth according to Christian era,In figure<span style="color: lime;">*</span>: </label>
+        </div>
+        <div class="user-box">
+        <input type="text" id="institute" name="institute" required  >
+        <label for="institute">Institute Last Attended<span style="color: lime;">*</span>: </label>
+        </div>
+        <div class="user-box">
+        <input id="doa" required name="doa" class="box">
+        <label for="doa">Date of Addmission in this college<span style="color: lime;">*</span>: </label>
+        </div>
+        <div class="user-box">
+        <label style="position: relative;" for="leave">Date of leaving the institution<span style="color: lime;">*</span>:</label>
+        <input type="month" id="leave" required name="leave" class="box">
+        </div>
+        <div class="user-box">
+        <select style="border-radius: 10px; height: 2rem; background:rgba(0,0,0,.5); color: #03e9f4;" name="pet-select" id="pet-select" required class="box">
+            <option value="">Choose Your Course</option>
+            <option value="Civil Engineering">Civil Engineering</option>
+            <option value="Civil & Infrastructure Engineering">Civil & Infrastructure Engineering</option>
+            <option value="Electronics Engineering">Electronics Engineering</option>
+            <option value="Computer Engineering">Computer Engineering</option>
+            <option value="Information Engineering">Information Engineering</option>
+            <option value="Artificial Intelligence & Data Science">Artificial Intelligence & Data Science</option>
+            <option value="Mechanical Engineering"> Mechanical Engineering</option>
+            <option value="Chemical Engineering">Chemical Engineering</option>
+            <option value="Humanities & Science">Humanities & Science</option>
+        </select>
+        </div>
+        <div class="user-box">
+        <label style="position: relative;" for="study">Course From<span style="color: lime;">*</span>:</label> 
+        <input type="month" id="study" name="study" required min=" 2016-05" value=" 2016-07" class="sub-box-1">
+        </div>
+        <div class="user-box">
+        <label style="position: relative;" for="till">To<span style="color: lime;">*</span>:</label> 
+        <input type="month" id="till" name="till" required min=" 2020-03" value=" 2020-05" class="sub-box-1">
+        </div>
+        <div class="user-box">
+        <input name="CGPI" id="CGPI"  required class="sub-box-1">
+        <label for="CGPI">CGPI<span style="color: lime;">*</span>:</label>
+        </div>
+        <a href="#" onclick="sub()">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        Submit
+        </a>
+    </form>
     </div>
 
-    <form action="/LC" method="post">
+    {{!-- <form action="/LC" method="post">
         <div class="main_content" id="con_1">
             <label for="name">Registration Number of candidate<span style="color: black;">*</span>:</label> <br><br>
             <input type="text" id="reg_num" name="reg_num" required  size="20"
@@ -96,7 +181,7 @@
             <label for="CGPI">CGPI<span style="color: black;">*</span>:</label> <br><br>
             <input name="CGPI" id="CGPI" placeholder=" CGPI" required class="sub-box-1">
             <button type="submit" value="Submit" class="button">Proceed and Print</button>
-    </form>
+    </form> --}}
     <script type="text/javascript">
     $(function() {
     $("#reg_num").autocomplete({
@@ -182,6 +267,9 @@
                 document.getElementById("doa").value = d1.toLocaleDateString();
             }
         });
+    }
+    function sub() {
+    document.getElementById("subs").submit();
     }
     </script>
 </body>
