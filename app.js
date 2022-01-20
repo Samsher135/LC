@@ -5,7 +5,6 @@ var mysql = require('mysql');
 require('dotenv').config();
 var dateToWords = require("date-to-words");
 const { all } = require('express/lib/application');
-
 var con = mysql.createConnection({
 //   host: "localhost",
 //   user: "root",
@@ -44,7 +43,7 @@ app.use(express.static('public'));
 app.use(express.urlencoded({extended:false}));
 
 
-app.get('/', (req, res)=>{     
+app.get('/', (req, res)=>{      
 res.render('home');
 });
 
