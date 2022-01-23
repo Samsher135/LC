@@ -175,10 +175,15 @@
     @media only screen and (max-width: 480px) {
       .login-box{
           width: 350px;
-          top: 115%;
+          top: 165%;
       }
       #find{
         display: block;
         margin-bottom: 20px;
       }
+  }
+
+  .ui-widget-content{
+    background-color: black;
+    color: #03e9f4;
   }

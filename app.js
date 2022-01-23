@@ -43,7 +43,13 @@ app.use(express.static('public'));
 app.use(express.urlencoded({extended:false}));
 
 
-app.get('/', (req, res)=>{      
+app.get('/', (req, res)=>{
+con.query('SELECT serial_no FROM counter',
+function(err, rows, fields) {
+if (err) throw err;
+serial = rows[0].serial_no;
+console.log(serial);
+});          
 res.render('home');
 });
 
@@ -64,11 +70,18 @@ app.get('/search', function(req, res) {
 
 let serial;
 
+// app.get('/get_serial', (req, res)=>{ 
+//     con.query('SELECT serial_no FROM counter',
+//     function(err, rows, fields) {
+//     if (err) throw err;
+//     serial = rows[0].serial_no;
+//     });
+// });
+
 app.get('/all_data', (req, res)=>{ 
-    con.query('SELECT students_details.*,counter.serial_no FROM students_details,counter WHERE GR_NO = ?', [req.query.GR_NO],
+    con.query('SELECT * FROM students_details WHERE GR_NO = ?', [req.query.GR_NO],
     function(err, rows, fields) {
     if (err) throw err;
-    serial = rows[0].serial_no;
     res.send(rows);
     });
 });
