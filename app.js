@@ -92,6 +92,7 @@ function swap(dates){
     let c = mmdd[0];
     mmdd[0] = mmdd[1];
     mmdd[1] = c;
+    console.log(mmdd.join('/'));
     return mmdd.join('/'); 
 }
   

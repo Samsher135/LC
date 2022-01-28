@@ -15,16 +15,12 @@
 </head>
 
 <body>
-    {{!-- <div class="container">
-        <h1 id="head"> DATTA MEGHE COLLEGE OF ENGINEERING</h1>
-        <h2 id="subhead">Leaving Certificate</h2>
-    </div> --}}
     <div class="login-box">
     <h2>Leaving Certicate Form</h2>
     <form id="subs" action="/LC" method="post">
         <div class="user-box">
         <input type="text" id="reg_num" name="reg_num" required>
-        <label for="name">Registration Number of candidate<span style="color: lime;">*</span>:</label>
+        <label for="name">Registration No.<span style="color: lime;">*</span>:</label>
         <a style="text-align: center;" id="find" onclick="go()" href="#">
         <span></span>
         <span></span>
@@ -63,7 +59,7 @@
         </div>
         <div class="user-box">
         <input id="doa" required name="doa" class="box">
-        <label for="doa">Date of Addmission in this college<span style="color: lime;">*</span>: </label>
+        <label for="doa">Date of Addmission<span style="color: lime;">*</span>: </label>
         </div>
         <div class="user-box">
         <label style="position: relative;" for="leave">Date of leaving the institution<span style="color: lime;">*</span>:</label>
@@ -104,85 +100,6 @@
         </a>
     </form>
     </div>
-
-    {{!-- <form action="/LC" method="post">
-        <div class="main_content" id="con_1">
-            <label for="name">Registration Number of candidate<span style="color: black;">*</span>:</label> <br><br>
-            <input type="text" id="reg_num" name="reg_num" required  size="20"
-                placeholder=" Registration Number" class="box">
-            <button type="button" onclick="go()">Find</button>    
-            <br><br>
-            <!-- <h3>Name of candidate: </h3> -->
-            <label for="lname">Name of the Candidate<span style="color: black;">*</span></label>  <br><br>
-            <input type="name" id="fname" name="fname" required  size="20"
-                placeholder="full_name" class="box">
-            <br><br>
-            <label for="religion">Religion </label>  <br><br>
-            <input type="text" id="religion" name="religion" placeholder="Religion"  size="20"
-                class="box">
-            <br><br>
-            <label for="caste">Caste </label>  <br><br>
-            <input type="text" id="caste" name="caste" placeholder="caste"  size="20" class="box">
-            <br><br>
-            <label for="subcaste">Sub-Caste </label> <br><br>
-            <input type="text" id="subcaste" name="subcaste" placeholder="subcaste"  size="20"
-                class="box">
-            <br><br>
-            <label for="pob">Place of Birth<span style="color: black;">*</span></label>  <br><br>
-            <input type="text" id="pob" name="pob" placeholder="Place of birth" required  size="20" class="box">
-            <br><br>
-            <label for="nation">Nationality<span style="color: black;">*</span></label>  <br><br>
-            <input type="text" id="nation" name="nation" value="Indian" required  size="20" class="box">
-            <br><br>
-            <label for="dob">Date of Birth according to Christian era,In figure<span style="color: black;">*</span>: </label>  <br><br>
-            <input placeholder="dd-mm-yyyy" required id="dob" name="dob" class="box">
-            <br><br>
-            <label for="institute">Institute Last Attended<span style="color: black;">*</span>: </label>  <br><br>
-            <input type="text" id="institute" name="institute" required  size="20"
-                class="box">
-            <br><br>
-            <label for="doa">Date of Addmission in this college<span style="color: black;">*</span>: </label>  <br><br>
-            <input id="doa" required name="doa" class="box">
-            <br><br>
-            <label for="progress">Progress<span style="color: black;">*</span>: </label>  <br><br>
-            <input type="text" id="progress" value="Good" name="progress" required  size="20"
-                class="box">
-            <br><br>
-            <label for="conduct">Conduct<span style="color: black;">*</span>: </label>  <br><br>
-            <input type="text" id="conduct" value="Good" name="conduct" required  size="20" class="box">
-            <br><br>
-            <label for="leave">Date of leaving the institution<span style="color: black;">*</span>:</label>  <br><br>
-            <input type="month" id="leave" required name="leave" value="2020-05" class="box">
-            <br><br>
-            <label for="pet-select">Choose Your Course<span style="color: black;">*</span>:</label><br><br>
-            <select name="pet-select" id="pet-select" required class="box">
-                <option value="">--Please choose an option--</option>
-                <option value="Civil Engineering">Civil Engineering</option>
-                <option value="Civil & Infrastructure Engineering">Civil & Infrastructure Engineering</option>
-                <option value="Electronics Engineering">Electronics Engineering</option>
-                <option value="Computer Engineering">Computer Engineering</option>
-                <option value="Information Engineering">Information Engineering</option>
-                <option value="Artificial Intelligence & Data Science">Artificial Intelligence & Data Science</option>
-                <option value="Mechanical Engineering"> Mechanical Engineering</option>
-                <option value="Chemical Engineering">Chemical Engineering</option>
-                <option value="Humanities & Science">Humanities & Science</option>
-            </select>
-            <br><br>
-            <label for="study">course from<span style="color: black;">*</span> </label> 
-            <input type="month" id="study" name="study" required min=" 2016-05" value=" 2016-07" class="sub-box-1">
-            <label for="till">to<span style="color: black;">*</span></label> 
-            <input type="month" id="till" name="till" required min=" 2020-03" value=" 2020-05" class="sub-box-1">
-            <br><br>
-            <label for="reason">Reason for leaving institution(Optional):</label>  <br><br>
-            <textarea name="reason" id="reason" placeholder=" Write Here" class="sub-box-2"></textarea>
-            <br><br>
-            <label for="remarks">Remarks(Optional):</label> <br><br>
-            <textarea name="remarks" id="remarks" placeholder=" Write Here" class="sub-box-2"></textarea>
-            <br><br>
-            <label for="CGPI">CGPI<span style="color: black;">*</span>:</label> <br><br>
-            <input name="CGPI" id="CGPI" placeholder=" CGPI" required class="sub-box-1">
-            <button type="submit" value="Submit" class="button">Proceed and Print</button>
-    </form> --}}
     <script type="text/javascript">
     $(function() {
     $("#reg_num").autocomplete({
