@@ -1,15 +1,11 @@
 var express = require('express');
-const path = require('path')
-const hbs = require('hbs')
+const path = require('path');
+const hbs = require('hbs');
 var mysql = require('mysql');
 require('dotenv').config();
 var dateToWords = require("date-to-words");
 const { all } = require('express/lib/application');
 var con = mysql.createConnection({
-//   host: "localhost",
-//   user: "root",
-//   password: "",
-//   database: "lc"
   host: process.env.MYSQL_HOST,
   user: process.env.MYSQL_USER,
   password: process.env.MYSQL_PASSWORD,
@@ -21,17 +17,6 @@ con.connect(function(err) {
     console.log('Database is connected successfully !');
 });
 
-// let all_data = {};
-
-// con.connect(function(err) {
-//     if (err) throw err;
-//     con.query("SELECT * FROM students_details", function (err, result, fields) {
-//         if (err) throw err;
-//         all_data = result;
-//         console.log(result);
-//     });
-// });
-
 var app = express();
 
 
@@ -40,22 +25,38 @@ const PORT = process.env.PORT;
 app.set('view engine', 'hbs')
 // app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.static('public')); 
-app.use(express.urlencoded({extended:false}));
+const db = require("./models");
+const initRoutes = require("./routes/tutorial.routes");
+
+global.__basedir = __dirname + "/.";
+
+app.use(express.urlencoded({ extended: true }));
+initRoutes(app);
+
+db.sequelize.sync();
 
 
-app.get('/', (req, res)=>{
-con.query('SELECT serial_no FROM counter',
-function(err, rows, fields) {
-if (err) throw err;
-serial = rows[0].serial_no;
-console.log(serial);
-});          
-res.render('home');
+app.get('/', (req, res)=>{          
+res.render('uploader');
 });
+
+app.get('/home', (req, res)=>{          
+    res.render('home');
+});
+
+let serial;
+app.get('/find_serial',(req, res)=>{
+    con.query('SELECT serial_no FROM counter',
+    function(err, rows, fields) {
+    if (err) throw err;
+    serial = rows[0].serial_no;
+    console.log(serial, 'find_serial');
+    });
+})
 
 
 app.get('/search', function(req, res) {
-    con.query('SELECT * FROM students_details WHERE GR_NO LIKE "%' + req.query.term + '%"',
+    con.query('SELECT * FROM tutorials WHERE GR_NO LIKE "%' + req.query.term + '%"',
     function(err, rows, fields) {
     if (err) throw err;
     all_data = rows;
@@ -68,18 +69,8 @@ app.get('/search', function(req, res) {
     // res.render('home', all_data);
 });
 
-let serial;
-
-// app.get('/get_serial', (req, res)=>{ 
-//     con.query('SELECT serial_no FROM counter',
-//     function(err, rows, fields) {
-//     if (err) throw err;
-//     serial = rows[0].serial_no;
-//     });
-// });
-
 app.get('/all_data', (req, res)=>{ 
-    con.query('SELECT * FROM students_details WHERE GR_NO = ?', [req.query.GR_NO],
+    con.query('SELECT * FROM tutorials WHERE GR_NO = ?', [req.query.GR_NO],
     function(err, rows, fields) {
     if (err) throw err;
     res.send(rows);
@@ -150,6 +141,7 @@ app.get('/update_serial', (req, res)=>{
     });
     res.redirect('/');
 });
+
 
 app.listen(PORT, console.log(
     `Server started on port ${PORT}`));

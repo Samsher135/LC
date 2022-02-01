@@ -67,7 +67,7 @@
         </div>
         <div class="user-box">
         <select style="width:12rem; border-radius: 10px; height: 2rem; background:rgba(0,0,0,.5); color: #03e9f4;" name="pet-select" id="pet-select" required class="box">
-            <option value="">Choose Your Course</option>
+            <option value="">Select Course</option>
             <option value="Civil Engineering">Civil Engineering</option>
             <option value="Civil & Infrastructure Engineering">Civil & Infrastructure Engineering</option>
             <option value="Electronics Engineering">Electronics Engineering</option>
@@ -77,6 +77,16 @@
             <option value="Mechanical Engineering"> Mechanical Engineering</option>
             <option value="Chemical Engineering">Chemical Engineering</option>
             <option value="Humanities & Science">Humanities & Science</option>
+        </select>
+        </div>
+        <div class="user-box">
+        <select style="margin-top:1rem; width:12rem; border-radius: 10px; height: 2rem; background:rgba(0,0,0,.5); color: #03e9f4;" name="year-select" id="year-select" required class="box">
+            <option value="">Select Year</option>
+            <option value="FE">FE</option>
+            <option value="SE">SE</option>
+            <option value="TE">TE</option>
+            <option value="BE">BE</option>
+            <option value="ME">ME</option>
         </select>
         </div>
         <div class="user-box">
@@ -187,6 +197,7 @@
         });
     }
     function sub() {
+    $.get('/find_serial');    
     document.getElementById("subs").submit();
     }
     </script>

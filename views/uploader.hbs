@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html style="height: 100%;" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" />
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <title>LC certificate</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="login-box">
+    <h2>Upload Form</h2>
+    <form style="margin: 65px 0;" ref='file' id='file' action='/api/excel/upload' method='post' encType="multipart/form-data">
+        <div class="user-box">
+            <input style="color: orange;" type="file" name="file" />
+            <label style="top:-25px" for="file">Upload your file here:</label>
+            <a style="text-align: center; display:flow-root;" id="subm" href="#" onclick="subs()">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Upload
+            </a>
+            <h1 style="color: chartreuse; text-align:center; margin:50px 0" id="OR">OR</h1>
+            <a style="text-align: center; display:flow-root; color:aqua" id = "Home" onclick="location.href='/home'">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Home
+            </a>
+        </div> 
+    </form>
+    </div>
+    <script type="text/javascript">
+    function subs() {
+    document.getElementById("file").submit();
+    }
+    </script>
+</body>
+
+</html>
