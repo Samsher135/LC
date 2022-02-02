@@ -101,6 +101,8 @@
         <input name="CGPI" id="CGPI"  required class="sub-box-1">
         <label for="CGPI">CGPI<span style="color: lime;">*</span>:</label>
         </div>
+        <input type="hidden" id="serial_no" name="serial_no" value="">
+        <input type="hidden" id="ids" name="ids" value="">
         <a href="#" onclick="sub()">
         <span></span>
         <span></span>
@@ -128,6 +130,17 @@
             document.getElementById("caste").value = data[0].Caste;
             document.getElementById("subcaste").value = data[0].sub_caste;
             document.getElementById("pob").value = data[0].Birth_Place;
+            document.getElementById("ids").value = data[0].id;
+
+            if(data[0].serial_no){
+                document.getElementById("leave").value = data[0].DOL;
+                document.getElementById("pet-select").value = data[0].course;
+                document.getElementById("year-select").value = data[0].year;
+                document.getElementById("study").value = data[0].fromm;
+                document.getElementById("till").value = data[0].too;
+                document.getElementById("CGPI").value = data[0].cgpi;
+                document.getElementById("serial_no").value = data[0].serial_no;
+            }
             var isDate = function(date) {
                 return (new Date(date) !== "Invalid Date") && !isNaN(new Date(date));
             }
@@ -168,6 +181,17 @@
             document.getElementById("caste").value = data[0].Caste;
             document.getElementById("subcaste").value = data[0].sub_caste;
             document.getElementById("pob").value = data[0].Birth_Place;
+            document.getElementById("ids").value = data[0].id;
+
+            if(data[0].serial_no){
+                document.getElementById("leave").value = data[0].DOL;
+                document.getElementById("pet-select").value = data[0].course;
+                document.getElementById("year-select").value = data[0].year;
+                document.getElementById("study").value = data[0].fromm;
+                document.getElementById("till").value = data[0].too;
+                document.getElementById("CGPI").value = data[0].cgpi;
+                document.getElementById("serial_no").value = data[0].serial_no;
+            }
             var isDate = function(date) {
                 return (new Date(date) !== "Invalid Date") && !isNaN(new Date(date));
             }
@@ -196,8 +220,7 @@
             }
         });
     }
-    function sub() {
-    $.get('/find_serial');    
+    function sub() {   
     document.getElementById("subs").submit();
     }
     </script>

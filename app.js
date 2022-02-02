@@ -2,6 +2,7 @@ var express = require('express');
 const path = require('path');
 const hbs = require('hbs');
 var mysql = require('mysql');
+var syncSql = require('sync-sql');
 require('dotenv').config();
 var dateToWords = require("date-to-words");
 const { all } = require('express/lib/application');
@@ -17,6 +18,7 @@ con.connect(function(err) {
     console.log('Database is connected successfully !');
 });
 
+
 var app = express();
 
 
@@ -27,6 +29,7 @@ app.set('view engine', 'hbs')
 app.use(express.static('public')); 
 const db = require("./models");
 const initRoutes = require("./routes/tutorial.routes");
+const async = require('hbs/lib/async');
 
 global.__basedir = __dirname + "/.";
 
@@ -44,15 +47,15 @@ app.get('/home', (req, res)=>{
     res.render('home');
 });
 
-let serial;
-app.get('/find_serial',(req, res)=>{
-    con.query('SELECT serial_no FROM counter',
-    function(err, rows, fields) {
-    if (err) throw err;
-    serial = rows[0].serial_no;
-    console.log(serial, 'find_serial');
-    });
-})
+// let serial;
+// app.get('/find_serial',(req, res)=>{
+//     con.query('SELECT serial_no FROM counter',
+//     function(err, rows, fields) {
+//     if (err) throw err;
+//     serial = rows[0].serial_no;
+//     console.log(serial, 'find_serial');
+//     });
+// })
 
 
 app.get('/search', function(req, res) {
@@ -66,16 +69,16 @@ app.get('/search', function(req, res) {
     }
     res.end(JSON.stringify(data));
     });
-    // res.render('home', all_data);
 });
 
-app.get('/all_data', (req, res)=>{ 
-    con.query('SELECT * FROM tutorials WHERE GR_NO = ?', [req.query.GR_NO],
+app.get('/all_data', (req, res)=>{
+    con.query('SELECT tutorials.*, printed_lc.DOL, printed_lc.course, printed_lc.year, printed_lc.fromm, printed_lc.too, printed_lc.cgpi, printed_lc.serial_no from tutorials LEFT JOIN printed_lc on tutorials.id = printed_lc.id WHERE GR_NO = ?', [req.query.GR_NO],
     function(err, rows, fields) {
     if (err) throw err;
     res.send(rows);
     });
 });
+
 
 function swap(dates){
     let trail = dates;
@@ -86,13 +89,31 @@ function swap(dates){
     console.log(mmdd.join('/'));
     return mmdd.join('/'); 
 }
-  
 
-app.post('/LC', (req, res)=>{
-    // const {reg_num,fname,religion,caste,subcaste, pob,nation,dob,words,institute,doa,progress,conduct,leave,study,till,reason,remarks,CGPI} = req.body;
+function findser(){
+    console.log("func invoked");
+    return new Promise((resolve, reject) => {
+    con.query('SELECT serial_no FROM counter', (err, rows, fields) => {
+    if (err) {
+        return reject(err);
+    }
+    resolve(rows);
+    });
+ });
+}
+
+app.post('/LC', async (req, res)=>{
     const datas = req.body;
-    // console.log(reg_num,"1st");
-    // console.log(req.body, "datal");
+    console.log(!datas.serial_no, "chekerrr");
+    if(!datas.serial_no){
+        try{
+            let rows =  await findser();
+            datas.serial_no = rows[0].serial_no;
+            console.log(rows[0].serial_no);           
+        }catch(err){
+            console.log(err);
+        }
+    }
     let leave = req.body.leave.split("-");
     let study = req.body.study.split("-");
     let till = req.body.till.split("-"); 
@@ -121,26 +142,51 @@ app.post('/LC', (req, res)=>{
     spitter[2] = b;
 
     datas.toword = spitter.join(" ").replace(',', '').replace("the", "of");
-
-    datas.serial_no = serial;
     console.log(datas, "final");
     res.render('LC', datas);
 });
 
-app.get('/update_serial', (req, res)=>{
-    con.query('SELECT serial_no FROM counter WHERE id = 1',
-    function(err, rows, fields) {
-    if (err) throw err;
-    let serial = rows[0].serial_no;
-    serial++;
-    var sql = "UPDATE counter SET serial_no = ? WHERE id = 1";
-    con.query(sql,[serial], function (err, result) {
-      if (err) throw err;
-      console.log(result.affectedRows + " record(s) updated");
+function isprinted(ser){
+    console.log("func invoked2");
+    return new Promise((resolve, reject) => {
+    con.query('SELECT * from printed_lc WHERE serial_no = ?', [ser], (err, rows, fields) => {
+    if (err) {
+        return reject(err);
+    }
+    resolve(rows);
     });
-    });
+ });
+}
+
+app.post('/update_serial', async (req, res)=>{
+    try{
+        let row =  await isprinted(req.body.serial_no);
+        console.log(!row[0], "rrrr");
+        if(!row[0]){
+            con.query('SELECT serial_no FROM counter WHERE id = 1',
+                function(err, rowss, fields) {
+                if (err) throw err;
+                let serial = rowss[0].serial_no;
+                let sql2 = "INSERT INTO `printed_lc`(`id`, `DOL`, `course`, `year`, `fromm`, `too`, `cgpi`, `serial_no`) VALUES (?,?,?,?,?,?,?,?)";
+                con.query(sql2,[req.body.id,req.body.DOL,req.body.course,req.body.year,req.body.fromm,req.body.too,req.body.CGPI,serial], function (err, result) {
+                    if (err) throw err;
+                    console.log(result.affectedRows + " record(s) updated");
+                });
+                serial++;
+                let sql = "UPDATE counter SET serial_no = ? WHERE id = 1";
+                con.query(sql,[serial], function (err, result1) {
+                if (err) throw err;
+                console.log(result1.affectedRows + " record(s) updated");
+                });
+            });
+        }           
+    }catch(err){
+        console.log(err);
+    }
     res.redirect('/');
 });
+
+
 
 
 app.listen(PORT, console.log(

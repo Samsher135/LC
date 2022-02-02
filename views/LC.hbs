@@ -71,7 +71,21 @@
         var onPrintFinished=function(){
             console.log("do something...");
             window.print();
-            $.get('/update_serial');
+            $.post('/update_serial',
+            {
+            id: {{ids}},
+            GR_NO: "{{reg_num}}",
+            DOL : "{{newleave}}",
+            course : "{{pet-select}}",
+            year : "{{year-select}}",
+            fromm : "{{newstudy}}",
+            too : "{{newtill}}",
+            CGPI : "{{CGPI}}",
+            serial_no : {{serial_no}}
+            },
+            function(data,status){
+                console.log(status);
+            });
         }
     </script>
 </body>

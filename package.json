@@ -20,6 +20,7 @@
     "mysql": "^2.18.1",
     "mysql2": "^2.3.3",
     "read-excel-file": "^5.2.26",
-    "sequelize": "^6.15.0"
+    "sequelize": "^6.15.0",
+    "sync-sql": "^1.0.2"
   }
 }
