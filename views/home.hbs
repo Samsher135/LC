@@ -21,28 +21,24 @@
         <div class="user-box">
         <input type="text" id="reg_num" name="reg_num" required>
         <label for="name">Registration No.<span style="color: lime;">*</span>:</label>
-        <a style="text-align: center;" id="find" onclick="go()" href="#">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        Find
-        </a>
+        <div class="b1">
+            <button class="glow-on-hover"  id="find" onclick="go()" type="button">Find</button>
+        </div>
         </div>
         <div class="user-box">
         <input type="name" id="fname" name="fname" required  >
         <label for="lname">Name of the Candidate<span style="color: lime;">*</span>:</label> 
         </div>
         <div class="user-box">
-        <input type="text" id="religion" name="religion" required="">
+        <input type="text" id="religion" name="religion">
         <label for="religion">Religion:</label> 
         </div>
         <div class="user-box">
-        <input type="text" id="caste" name="caste" required="">
+        <input type="text" id="caste" name="caste">
         <label for="caste">Caste:</label>
         </div>        
         <div class="user-box">
-        <input type="text" id="subcaste" name="subcaste" required="">
+        <input type="text" id="subcaste" name="subcaste">
         <label for="subcaste">Sub-Caste:</label>
         </div>
         <div class="user-box">
@@ -66,19 +62,15 @@
         <input type="Date" id="leave" required name="leave" class="box">
         </div>
         <div class="user-box">
-        <select style="width:12rem; border-radius: 10px; height: 2rem; background:rgba(0,0,0,.5); color: #03e9f4;" name="pet-select" id="pet-select" required class="box">
-            <option value="">Select Course</option>
-            <option value="Civil Engineering">Civil Engineering</option>
-            <option value="Civil & Infrastructure Engineering">Civil & Infrastructure Engineering</option>
-            <option value="Electronics Engineering">Electronics Engineering</option>
-            <option value="Computer Engineering">Computer Engineering</option>
-            <option value="Information Engineering">Information Engineering</option>
-            <option value="Artificial Intelligence & Data Science">Artificial Intelligence & Data Science</option>
-            <option value="Mechanical Engineering"> Mechanical Engineering</option>
-            <option value="Chemical Engineering">Chemical Engineering</option>
-            <option value="Humanities & Science">Humanities & Science</option>
-        </select>
+        <p style="color: aliceblue;">Courses: <select name="pet-select" id="pet-select">
+            {{#each courses}}
+                <option>{{this}}</option>
+            {{/each}}
+            </select>
+        </p>
+        <a style="border: 2px solid;" href="/edit_course">Edit courses</a>    
         </div>
+
         <div class="user-box">
         <select style="margin-top:1rem; width:12rem; border-radius: 10px; height: 2rem; background:rgba(0,0,0,.5); color: #03e9f4;" name="year-select" id="year-select" required class="box">
             <option value="">Select Year</option>
@@ -97,19 +89,18 @@
         <label style="position: relative;" for="till">To<span style="color: lime;">*</span>:</label> 
         <input type="Date" id="till" name="till" required min=" 2020-03" value=" 2020-05" class="sub-box-1">
         </div>
+        <input type="checkbox" id="Cancelled" name="Cancelled" value="Cancelled">
+        <label style="color: aliceblue;" for="Cancelled">Is Admission Cancelled</label>    
         <div class="user-box">
-        <input name="CGPI" id="CGPI"  required class="sub-box-1">
+        <input name="CGPI" id="CGPI" required class="sub-box-1">
         <label for="CGPI">CGPI<span style="color: lime;">*</span>:</label>
         </div>
         <input type="hidden" id="serial_no" name="serial_no" value="">
         <input type="hidden" id="ids" name="ids" value="">
-        <a href="#" onclick="sub()">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        Submit
-        </a>
+        <input type="hidden" id="PRN_NO" name="PRN_NO" value="">
+        <div class="b1">
+            <button class="glow-on-hover" form="subs" value="Submit" type="submit">Submit</button>
+        </div>
     </form>
     </div>
     <script type="text/javascript">
@@ -131,6 +122,7 @@
             document.getElementById("subcaste").value = data[0].sub_caste;
             document.getElementById("pob").value = data[0].Birth_Place;
             document.getElementById("ids").value = data[0].id;
+            document.getElementById("PRN_NO").value = data[0].PRN_NO;
 
             if(data[0].serial_no){
                 document.getElementById("leave").value = data[0].DOL;
@@ -182,6 +174,7 @@
             document.getElementById("subcaste").value = data[0].sub_caste;
             document.getElementById("pob").value = data[0].Birth_Place;
             document.getElementById("ids").value = data[0].id;
+            document.getElementById("PRN_NO").value = data[0].PRN_NO;
 
             if(data[0].serial_no){
                 document.getElementById("leave").value = data[0].DOL;
@@ -220,8 +213,17 @@
             }
         });
     }
-    function sub() {   
-    document.getElementById("subs").submit();
+    $("#Cancelled").change(function() {
+    if(this.checked) {
+          console.log("ffff");
+          document.getElementById("CGPI").value = "NA";
+    }
+    });
+    var perfEntries = performance.getEntriesByType("navigation");
+
+    if (perfEntries[0].type === "back_forward") {
+        console.log("fff");
+        location.reload(true);
     }
     </script>
 </body>

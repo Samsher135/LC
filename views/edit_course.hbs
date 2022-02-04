@@ -16,22 +16,28 @@
 
 <body>
     <div style="margin: 85px auto;" class="login-box">
-    <h2>Upload Form</h2>
-    <form style="margin: 65px 0;" ref='file' id='file' action='/api/excel/upload' method='post' encType="multipart/form-data">
+    <h2>Course Edit form</h2>
+    <form style="margin: 65px 0;" id='add_c' action='/add_course' method='post'>
+            <div class="user-box">
+            <input type="text" id="course" name="course" required>
+            <label for="course">Enter course name<span style="color: lime;">*</span>:</label> 
+            </div>
+            <div class="b1">
+            <button class="glow-on-hover"  id="submi" form="add_c" value="Submit" type="submit">Add course</button>
+            </div> 
+    </form>
+    <h1 style="color: chartreuse; text-align:center; margin:10px 0" id="OR">OR</h1>
+    <form style="margin: 65px 0;" id='delete_c' action='/delete_course' method='post'>
         <div class="user-box">
-            <input style="color: orange;" type="file" name="file" />
-            <label style="top:-25px" for="file">Upload your file here:</label>
-            <div class="b1">
-            <button class="glow-on-hover"  id="subm" form="file" value="Submit" type="submit">Upload</button>
-            </div>
-            <h1 style="color: chartreuse; text-align:center; margin:10px 0" id="OR">OR</h1>
-            <div class="b1">
-            <button class="glow-on-hover" onclick="location.href='/home'" id = "Home" type="button">Home</button>
-            </div>
-            <h1 style="color: chartreuse; text-align:center; margin:10px 0" id="OR">OR</h1>
-            <div class="b1">
-            <button class="glow-on-hover" onclick="location.href='/api/excel/download'" id = "download" type="button">Download LC</button>
-            </div>
+        <p style="color: aliceblue;">Select course to delete: <select name="course" id="course">
+            {{#each courses}}
+                <option>{{this}}</option>
+            {{/each}}
+            </select>
+        </p>    
+        </div>
+        <div class="b1">
+            <button class="glow-on-hover"  id="submits" form="delete_c" value="Submit" type="submit">Delete</button>
         </div> 
     </form>
     </div>

@@ -43,8 +43,19 @@ app.get('/', (req, res)=>{
 res.render('uploader');
 });
 
-app.get('/home', (req, res)=>{          
-    res.render('home');
+app.get('/home', (req, res)=>{  
+    con.query('SELECT `names` FROM `courses` WHERE 1',
+    function(err, rows, fields) {
+    if (err) throw err;
+    var courses = [];
+    //console.log('The solution is: ', rows.length);
+    for (var i =0; i < rows.length; i++) {
+      //console.log('The solution is: ', rows[i]["id"]);
+      courses.push(rows[i]["names"]);
+    }
+    console.log(courses);
+    res.render('home',{courses:courses});
+    });        
 });
 
 // let serial;
@@ -56,6 +67,38 @@ app.get('/home', (req, res)=>{
 //     console.log(serial, 'find_serial');
 //     });
 // })
+app.get('/edit_course', (req, res)=>{
+    con.query('SELECT `names` FROM `courses` WHERE 1',
+    function(err, rows, fields) {
+    if (err) throw err;
+    var courses = [];
+    //console.log('The solution is: ', rows.length);
+    for (var i =0; i < rows.length; i++) {
+      //console.log('The solution is: ', rows[i]["id"]);
+      courses.push(rows[i]["names"]);
+    }
+    console.log(courses);
+    res.render('edit_course',{courses:courses});
+    });
+})
+
+app.post('/add_course',(req, res)=>{
+    con.query('INSERT INTO `courses`(`names`) VALUES (?)', [req.body.course],
+    function(err, rows, fields){
+        if(err) throw err;
+        res.send("successfully added course");
+    });
+});
+
+app.post('/delete_course',(req, res)=>{
+    console.log(req.body.course, "lolsss");
+    var sql = "DELETE FROM `courses` WHERE names = ?";
+    con.query(sql,[req.body.course], function (err, result) {
+        if (err) throw err;
+        console.log("Number of records deleted: " + result.affectedRows);
+        res.send("successfully delete course");
+    });
+});
 
 
 app.get('/search', function(req, res) {
@@ -72,7 +115,7 @@ app.get('/search', function(req, res) {
 });
 
 app.get('/all_data', (req, res)=>{
-    con.query('SELECT tutorials.*, printed_lc.DOL, printed_lc.course, printed_lc.year, printed_lc.fromm, printed_lc.too, printed_lc.cgpi, printed_lc.serial_no from tutorials LEFT JOIN printed_lc on tutorials.id = printed_lc.id WHERE GR_NO = ?', [req.query.GR_NO],
+    con.query('SELECT tutorials.*, printed_lcs.DOL, printed_lcs.course, printed_lcs.year, printed_lcs.fromm, printed_lcs.too, printed_lcs.cgpi, printed_lcs.serial_no from tutorials LEFT JOIN printed_lcs on tutorials.id = printed_lcs.id WHERE tutorials.GR_NO = ?', [req.query.GR_NO],
     function(err, rows, fields) {
     if (err) throw err;
     res.send(rows);
@@ -142,6 +185,10 @@ app.post('/LC', async (req, res)=>{
     spitter[2] = b;
 
     datas.toword = spitter.join(" ").replace(',', '').replace("the", "of");
+    datas.cancel = false;
+    if(req.body.Cancelled){
+        datas.cancel = true;
+    }
     console.log(datas, "final");
     res.render('LC', datas);
 });
@@ -149,7 +196,7 @@ app.post('/LC', async (req, res)=>{
 function isprinted(ser){
     console.log("func invoked2");
     return new Promise((resolve, reject) => {
-    con.query('SELECT * from printed_lc WHERE serial_no = ?', [ser], (err, rows, fields) => {
+    con.query('SELECT * from printed_lcs WHERE serial_no = ?', [ser], (err, rows, fields) => {
     if (err) {
         return reject(err);
     }
@@ -167,8 +214,8 @@ app.post('/update_serial', async (req, res)=>{
                 function(err, rowss, fields) {
                 if (err) throw err;
                 let serial = rowss[0].serial_no;
-                let sql2 = "INSERT INTO `printed_lc`(`id`, `DOL`, `course`, `year`, `fromm`, `too`, `cgpi`, `serial_no`) VALUES (?,?,?,?,?,?,?,?)";
-                con.query(sql2,[req.body.id,req.body.DOL,req.body.course,req.body.year,req.body.fromm,req.body.too,req.body.CGPI,serial], function (err, result) {
+                let sql2 = "INSERT INTO `printed_lcs`(`id`, `GR_NO`, `Candidate_Name`, `Date_of_issue`, `DOL`, `course`, `year`, `fromm`, `too`, `cgpi`, `serial_no`, `remark`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+                con.query(sql2,[req.body.id,req.body.GR_NO,req.body.name,req.body.t_date,req.body.DOL,req.body.course,req.body.year,req.body.fromm,req.body.too,req.body.CGPI,serial,req.body.remark], function (err, result) {
                     if (err) throw err;
                     console.log(result.affectedRows + " record(s) updated");
                 });

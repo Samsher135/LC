@@ -1,5 +1,6 @@
 const db = require("../../models");
 const Tutorial = db.tutorials;
+const printed = db.printed_lc;
 
 const readXlsxFile = require("read-excel-file/node");
 const excel = require("exceljs");
@@ -58,7 +59,7 @@ const upload = async (req, res) => {
 };
 
 const getTutorials = (req, res) => {
-  Tutorial.findAll()
+  printed.findAll()
     .then((data) => {
       res.send(data);
     })
@@ -71,42 +72,38 @@ const getTutorials = (req, res) => {
 };
 
 const download = (req, res) => {
-  Tutorial.findAll().then((objs) => {
-    let tutorials = [];
+  printed.findAll().then((objs) => {
+    let printed_lcs = [];
 
     objs.forEach((obj) => {
-      tutorials.push({
+      printed_lcs.push({
+        serial_no: obj.serial_no,
         GR_NO: obj.GR_NO,
-        PRN_NO: obj.PRN_NO,
         Candidate_Name: obj.Candidate_Name,
-        Religion: obj.Religion,
-        Caste: obj.Caste,
-        sub_caste: obj.sub_caste,
-        Birth_Place: obj.Birth_Place,
-        DOB: obj.DOB,
-        Last_College_Name: obj.Last_College_Name,
-        Date_of_admission: obj.Date_of_admission,
+        year: obj.year,
+        course: obj.course,
+        Date_of_issue: obj.Date_of_issue,
+        too: obj.too,
+        remark: obj.remark
       });
     });
 
     let workbook = new excel.Workbook();
-    let worksheet = workbook.addWorksheet("Tutorials");
+    let worksheet = workbook.addWorksheet("printeds");
 
     worksheet.columns = [
+      { header: "serial_no", key: "serial_no", width: 25 },
       { header: "GR_NO", key: "GR_NO", width: 25 },
-      { header: "PRN_NO", key: "PRN_NO", width: 25 },
       { header: "Candidate_Name", key: "Candidate_Name", width: 25 },
-      { header: "Religion", key: "Religion", width: 25 },
-      { header: "Caste", key: "Caste", width: 25 },
-      { header: "sub_caste", key: "sub_caste", width: 25 },
-      { header: "Birth_Place", key: "Birth_Place", width: 25 },
-      { header: "DOB", key: "DOB", width: 25 },
-      { header: "Last_College_Name", key: "Last_College_Name", width: 25 },
-      { header: "Date_of_admission", key: "Date_of_admission", width: 25 },
+      { header: "year", key: "year", width: 25 },
+      { header: "course", key: "course", width: 25 },
+      { header: "Date_of_issue", key: "Date_of_issue", width: 25 },
+      { header: "too", key: "too", width: 25 },
+      { header: "remark", key: "remark", width: 25 },
     ];
 
     // Add Array Rows
-    worksheet.addRows(tutorials);
+    worksheet.addRows(printed_lcs);
 
     res.setHeader(
       "Content-Type",
@@ -114,7 +111,7 @@ const download = (req, res) => {
     );
     res.setHeader(
       "Content-Disposition",
-      "attachment; filename=" + "tutorials.xlsx"
+      "attachment; filename=" + "printed_lcs.xlsx"
     );
 
     return workbook.xlsx.write(res).then(function () {

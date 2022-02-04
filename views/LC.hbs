@@ -22,7 +22,7 @@
         </div>
     </header>
     <div contentEditable="true" class="main_section">
-        <pre><p>1) Registration number of candidate <span class="underline">  --{{reg_num}}--</span></p></pre>
+        <pre class="sml"><p><span>1) Registration number of candidate <span class="underline"> --{{reg_num}}-- </span></span><span> PRN_NO <span class="underline"> {{PRN_NO}} </span></span></p></pre>
         <pre><p>2) Name of the candidate <span class="underline">  {{fname}}</span></p></pre>
         <pre class="sml"><p><span>3) Religion <span class="underline">  {{religion}} </span></span><span>Caste<span class="underline"> {{caste}} </span></span><span> Sub-Caste <span class="underline"> {{subcaste}}</span></span></p></pre>
         <pre class="sml"><p><span>4) Place of birth <span class="underline"> {{pob}} </span></span><span> Nationality <span class="underline"> Indian </span></span></p></pre>
@@ -34,8 +34,8 @@
         <pre><p>10) Date of leaving the institution <span class="underline"> {{newleave}} </span></p></pre>
         <pre><p>11) Course and year in which studying and since when <span class="underline"> {{pet-select}} </span></p></pre>
         <pre><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="underline">Course From {{newstudy}} To {{newtill}} </span></p></pre>
-        <pre><p>12) Reason for leaving the institution <span class="underline">{{year-select}} in {{pet-select}} Passed in {{newtill}} </span></p></pre>
-        <pre><p>13) Remarks <span class="underline">{{year-select}} in {{pet-select}} Passed with CGPI {{CGPI}} </span></p></pre>
+        <pre><p>12) Reason for leaving the institution <span class="underline" id="can1">{{year-select}} in {{pet-select}} Passed in {{newtill}} </span></p></pre>
+        <pre><p>13) Remarks <span class="underline" id="can2">{{year-select}} in {{pet-select}} Passed with CGPI {{CGPI}} </span></p></pre>
     </div>
     <footer>
         <h3>Certified that the above information is in accordance with the institute's Record</h3>
@@ -63,7 +63,7 @@
         </div> 
         </div>
         <button class="button" style="margin:0 auto; width: 50%; background-color:rgb(255, 168, 7); padding: 10px;" id="printPageButton" onClick="onPrintFinished();">Print</button>
-        <button class="button" style="margin:0 auto; width: 10%; background-color:rgb(255, 57, 7); padding: 10px;" id="tohomebutton" onclick="location.href='/'">HOME</button>
+        <button class="button" style="margin:0 auto; width: 10%; background-color:rgb(255, 57, 7); padding: 10px;" id="tohomebutton" onclick="location.href='/home'">HOME</button>
     </footer>
     </div>
     </div>
@@ -75,17 +75,32 @@
             {
             id: {{ids}},
             GR_NO: "{{reg_num}}",
+            name: "{{fname}}",
+            t_date: "{{todaydate}}",
             DOL : "{{newleave}}",
             course : "{{pet-select}}",
             year : "{{year-select}}",
             fromm : "{{newstudy}}",
             too : "{{newtill}}",
             CGPI : "{{CGPI}}",
-            serial_no : {{serial_no}}
+            serial_no : {{serial_no}},
+            remark : document.getElementById("can2").innerHTML
             },
             function(data,status){
                 console.log(status);
             });
+        }
+
+        if({{cancel}}){
+            console.log("lolllll");
+            document.getElementById("can1").innerHTML = "Admission cancelled on his own request";
+            document.getElementById("can2").innerHTML = "Course Discontinue";
+        }
+        var perfEntries = performance.getEntriesByType("navigation");
+
+        if (perfEntries[0].type === "back_forward") {
+            console.log("fff");
+            location.reload(true);
         }
     </script>
 </body>
