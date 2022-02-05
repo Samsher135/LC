@@ -2,7 +2,6 @@ var express = require('express');
 const path = require('path');
 const hbs = require('hbs');
 var mysql = require('mysql');
-var syncSql = require('sync-sql');
 require('dotenv').config();
 var dateToWords = require("date-to-words");
 const { all } = require('express/lib/application');
