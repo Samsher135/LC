@@ -213,8 +213,9 @@ app.post('/update_serial', async (req, res)=>{
                 function(err, rowss, fields) {
                 if (err) throw err;
                 let serial = rowss[0].serial_no;
+                let to = (req.body.too).slice(5);
                 let sql2 = "INSERT INTO `printed_lcs`(`id`, `GR_NO`, `Candidate_Name`, `Date_of_issue`, `DOL`, `course`, `year`, `fromm`, `too`, `cgpi`, `serial_no`, `remark`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
-                con.query(sql2,[req.body.id,req.body.GR_NO,req.body.name,req.body.t_date,req.body.DOL,req.body.course,req.body.year,req.body.fromm,req.body.too,req.body.CGPI,serial,req.body.remark], function (err, result) {
+                con.query(sql2,[req.body.id,req.body.GR_NO,req.body.name,req.body.t_date,req.body.DOL,req.body.course,req.body.year,req.body.fromm,to,req.body.CGPI,serial,req.body.remark], function (err, result) {
                     if (err) throw err;
                     console.log(result.affectedRows + " record(s) updated");
                 });
