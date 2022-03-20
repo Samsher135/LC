@@ -6,11 +6,11 @@ require('dotenv').config();
 var dateToWords = require("date-to-words");
 const { all } = require('express/lib/application');
 var con = mysql.createConnection({
-  host: process.env.MYSQL_HOST,
-  user: process.env.MYSQL_USER,
-  password: process.env.MYSQL_PASSWORD,
-  database:process.env.MYSQL_DATABASE,
-  port: process.env.MYSQL_PORT
+    host: process.env.MYSQL_HOST,
+    user: process.env.MYSQL_USER,
+    password: process.env.MYSQL_PASSWORD,
+    database: process.env.MYSQL_DATABASE,
+    port: process.env.MYSQL_PORT
 });
 
 con.connect(function(err) {
@@ -102,7 +102,7 @@ app.post('/delete_course',(req, res)=>{
 
 
 app.get('/search', function(req, res) {
-    con.query('SELECT * FROM tutorials WHERE GR_NO LIKE "%' + req.query.term + '%"',
+    con.query(`SELECT * FROM tutorials WHERE GR_NO LIKE '%${req.query.term}%'`,
     function(err, rows, fields) {
     if (err) throw err;
     all_data = rows;
